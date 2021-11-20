@@ -42,14 +42,19 @@ const minuteNoun = new Noun('mionaid', 'mionaidean', 'mhionaid');
  * @param includeHour whether to include the noun "uair/uairean" meaning "hour" in the string.
  */
 function translateHour(hour: number, includeHour: boolean = true) {
+    if (hour == 0) {
+        // 12 midnight, literally "mid-night"
+        return 'meadhan-oidhche';
+    } else if (hour == 12) {
+        // 12 noon, literally "mid-day";
+        return 'meadhan-là';
+    }
+
     hour = hour % 12;
 
     if (hour == 1) {
+        // 1 'o clock, literally just "hour"
         return hourNoun.singularForm;
-    }
-
-    if (hour == 0) {
-        hour = 12;
     }
 
     return includeHour ?
@@ -84,12 +89,12 @@ export function translateTime(time: Date): GaelicTimeIdiom {
         return new GaelicTimeIdiom(hourTranslation, 'leth-uair an dèidh');
     } else if (minutes == 45) {
         // Quarter til the hour
-        const nextHour = (time.getHours() + 1) % 12;
+        const nextHour = (time.getHours() + 1) % 24;
         const hourTranslation = translateHour(nextHour, false);
         return new GaelicTimeIdiom(hourTranslation, 'cairteal gu');
     } else {
         // Some number of minutes until the hour
-        const nextHour = (time.getHours() + 1) % 12;
+        const nextHour = (time.getHours() + 1) % 24;
         const hourTranslation = translateHour(nextHour, false);
 
         const minutesUntilHour = 60 - time.getMinutes();

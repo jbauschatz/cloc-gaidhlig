@@ -9,6 +9,10 @@ function buildTime(hour: number, minute: number) {
 
 describe(translateTime, () => {
     it('should translate even hours', () => {
+        expect(translateTime(buildTime(0, 0))).toEqual({
+            hourOfDay: 'meadhan-oidhche',
+            prefix: undefined,
+        });
         expect(translateTime(buildTime(1, 0))).toEqual({
             hourOfDay: 'uair',
             prefix: undefined,
@@ -30,7 +34,7 @@ describe(translateTime, () => {
             prefix: undefined,
         });
         expect(translateTime(buildTime(12, 0))).toEqual({
-            hourOfDay: 'dà uair dheug',
+            hourOfDay: 'meadhan-là',
             prefix: undefined,
         });
         expect(translateTime(buildTime(13, 0))).toEqual({
@@ -43,6 +47,10 @@ describe(translateTime, () => {
         });
     });
     it('should translate quarter after the hour', () => {
+        expect(translateTime(buildTime(0, 15))).toEqual({
+            hourOfDay: 'meadhan-oidhche',
+            prefix: 'cairteal an dèidh',
+        });
         expect(translateTime(buildTime(1, 15))).toEqual({
             hourOfDay: 'uair',
             prefix: 'cairteal an dèidh',
@@ -60,11 +68,19 @@ describe(translateTime, () => {
             prefix: 'cairteal an dèidh',
         });
         expect(translateTime(buildTime(12, 15))).toEqual({
-            hourOfDay: 'dhà dheug',
+            hourOfDay: 'meadhan-là',
+            prefix: 'cairteal an dèidh',
+        });
+        expect(translateTime(buildTime(13, 15))).toEqual({
+            hourOfDay: 'uair',
             prefix: 'cairteal an dèidh',
         });
     });
     it('should translate minutes past the hour', () => {
+        expect(translateTime(buildTime(0, 1))).toEqual({
+            hourOfDay: 'meadhan-oidhche',
+            prefix: 'aon mionaid an dèidh',
+        });
         expect(translateTime(buildTime(1, 1))).toEqual({
             hourOfDay: 'uair',
             prefix: 'aon mionaid an dèidh',
@@ -81,8 +97,20 @@ describe(translateTime, () => {
             hourOfDay: 'aon deug',
             prefix: 'fichead mionaid \'s a naoi an dèidh',
         });
+        expect(translateTime(buildTime(12, 1))).toEqual({
+            hourOfDay: 'meadhan-là',
+            prefix: 'aon mionaid an dèidh',
+        });
+        expect(translateTime(buildTime(13, 1))).toEqual({
+            hourOfDay: 'uair',
+            prefix: 'aon mionaid an dèidh',
+        });
     });
     it('should translate half past the hour', () => {
+        expect(translateTime(buildTime(0, 30))).toEqual({
+            hourOfDay: 'meadhan-oidhche',
+            prefix: 'leth-uair an dèidh',
+        });
         expect(translateTime(buildTime(1, 30))).toEqual({
             hourOfDay: 'uair',
             prefix: 'leth-uair an dèidh',
@@ -100,7 +128,11 @@ describe(translateTime, () => {
             prefix: 'leth-uair an dèidh',
         });
         expect(translateTime(buildTime(12, 30))).toEqual({
-            hourOfDay: 'dhà dheug',
+            hourOfDay: 'meadhan-là',
+            prefix: 'leth-uair an dèidh',
+        });
+        expect(translateTime(buildTime(13, 30))).toEqual({
+            hourOfDay: 'uair',
             prefix: 'leth-uair an dèidh',
         });
     });
@@ -122,7 +154,15 @@ describe(translateTime, () => {
             prefix: 'cairteal gu',
         });
         expect(translateTime(buildTime(11, 45))).toEqual({
-            hourOfDay: 'dhà dheug',
+            hourOfDay: 'meadhan-là',
+            prefix: 'cairteal gu',
+        });
+        expect(translateTime(buildTime(12, 45))).toEqual({
+            hourOfDay: 'uair',
+            prefix: 'cairteal gu',
+        });
+        expect(translateTime(buildTime(23, 45))).toEqual({
+            hourOfDay: 'meadhan-oidhche',
             prefix: 'cairteal gu',
         });
     });
@@ -142,6 +182,18 @@ describe(translateTime, () => {
         expect(translateTime(buildTime(10, 31))).toEqual({
             hourOfDay: 'aon deug',
             prefix: 'fichead mionaid \'s a naoi gu',
+        });
+        expect(translateTime(buildTime(11, 59))).toEqual({
+            hourOfDay: 'meadhan-là',
+            prefix: 'aon mionaid gu',
+        });
+        expect(translateTime(buildTime(12, 59))).toEqual({
+            hourOfDay: 'uair',
+            prefix: 'aon mionaid gu',
+        });
+        expect(translateTime(buildTime(23, 59))).toEqual({
+            hourOfDay: 'meadhan-oidhche',
+            prefix: 'aon mionaid gu',
         });
     });
 });
