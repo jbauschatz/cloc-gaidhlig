@@ -22,14 +22,17 @@ export class GaelicTimeIdiom {
 }
 
 /**
- *
+ * Prefix component of a Gaelic time idiom.
+ * 
+ * This separates the minutes from the preposition so that they can be displayed differently
+ * if desired.
  */
 export class TimeIdiomPrefix {
     minutes: string;
     preposition: string;
 
     /**
-     *
+     * Constructs a new TimeIdiomPrefix
      */
     constructor(minutes: string, preposition: string) {
         this.minutes = minutes;
