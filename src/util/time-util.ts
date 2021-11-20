@@ -6,18 +6,34 @@ import {translateNumber, translateNumberedNoun} from './number-util';
  */
 export class GaelicTimeIdiom {
     hourOfDay: string;
-    prefix?: string;
+    prefix?: TimeIdiomPrefix;
 
     /**
      * Constructs a Gaelic Time with the given components
      *
      * Prefix is optional, and will be blank for times that fall directly on the hour
      */
-    constructor(hourOfDay: string, prefix?: string) {
+    constructor(hourOfDay: string, prefix?: TimeIdiomPrefix) {
         this.hourOfDay = hourOfDay;
         if (typeof prefix !== 'undefined') {
             this.prefix = prefix;
         }
+    }
+}
+
+/**
+ *
+ */
+export class TimeIdiomPrefix {
+    minutes: string;
+    preposition: string;
+
+    /**
+     *
+     */
+    constructor(minutes: string, preposition: string) {
+        this.minutes = minutes;
+        this.preposition = preposition;
     }
 }
 
@@ -63,6 +79,21 @@ function translateHour(hour: number, includeHour: boolean = true) {
 }
 
 /**
+ * Word for "quarter"
+ */
+const quarter = 'cairteal';
+
+/**
+ * Preposition for "after"
+ */
+const afterPreposition = 'an dèidh';
+
+/**
+ * Preposition for "to"
+ */
+const toPreposition = 'gu';
+
+/**
  * Translates the time portion of a given date into Gaelic
  */
 export function translateTime(time: Date): GaelicTimeIdiom {
@@ -75,32 +106,36 @@ export function translateTime(time: Date): GaelicTimeIdiom {
     } else if (minutes == 15) {
         // Quarter past the hour
         const hourTranslation = translateHour(time.getHours(), false);
-        return new GaelicTimeIdiom(hourTranslation, 'cairteal an dèidh');
+        return new GaelicTimeIdiom(hourTranslation, new TimeIdiomPrefix(quarter, afterPreposition));
     } else if (minutes < 30) {
         // Some number of minutes past the hour
         const hourTranslation = translateHour(time.getHours(), false);
-        const minutesAfterTranslation = translateNumberedNoun(time.getMinutes(), minuteNoun) +
-                ' an dèidh';
+        const minutesAfterPrefix = new TimeIdiomPrefix(
+            translateNumberedNoun(time.getMinutes(), minuteNoun),
+            afterPreposition
+        );
 
-        return new GaelicTimeIdiom(hourTranslation, minutesAfterTranslation);
+        return new GaelicTimeIdiom(hourTranslation, minutesAfterPrefix);
     } else if (minutes == 30) {
         // Half past the hour
         const hourTranslation = translateHour(time.getHours(), false);
-        return new GaelicTimeIdiom(hourTranslation, 'leth-uair an dèidh');
+        return new GaelicTimeIdiom(hourTranslation, new TimeIdiomPrefix('leth-uair', afterPreposition));
     } else if (minutes == 45) {
         // Quarter til the hour
         const nextHour = (time.getHours() + 1) % 24;
         const hourTranslation = translateHour(nextHour, false);
-        return new GaelicTimeIdiom(hourTranslation, 'cairteal gu');
+        return new GaelicTimeIdiom(hourTranslation, new TimeIdiomPrefix(quarter, toPreposition));
     } else {
         // Some number of minutes until the hour
         const nextHour = (time.getHours() + 1) % 24;
         const hourTranslation = translateHour(nextHour, false);
 
         const minutesUntilHour = 60 - time.getMinutes();
-        const minutesUntilTranslation = translateNumberedNoun(minutesUntilHour, minuteNoun) +
-                ' gu';
+        const minutesUntilPrefix = new TimeIdiomPrefix(
+            translateNumberedNoun(minutesUntilHour, minuteNoun),
+            toPreposition
+        );
 
-        return new GaelicTimeIdiom(hourTranslation, minutesUntilTranslation);
+        return new GaelicTimeIdiom(hourTranslation, minutesUntilPrefix);
     }
 }

@@ -22,6 +22,7 @@
         "indent": ["error", 4],
         "max-len": ["error", { "code": 160, "tabWidth": 4 }],
         "valid-jsdoc": "off",
-        "no-throw-literal": "off"
+        "no-throw-literal": "off",
+        "comma-dangle" : "off"
     }
 }

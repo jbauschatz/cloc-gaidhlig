@@ -49,151 +49,256 @@ describe(translateTime, () => {
     it('should translate quarter after the hour', () => {
         expect(translateTime(buildTime(0, 15))).toEqual({
             hourOfDay: 'meadhan-oidhche',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(1, 15))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(2, 15))).toEqual({
             hourOfDay: 'dhà',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(10, 15))).toEqual({
             hourOfDay: 'deich',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(11, 15))).toEqual({
             hourOfDay: 'aon deug',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(12, 15))).toEqual({
             hourOfDay: 'meadhan-là',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(13, 15))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'cairteal an dèidh',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'an dèidh'
+            }
         });
     });
     it('should translate minutes past the hour', () => {
         expect(translateTime(buildTime(0, 1))).toEqual({
             hourOfDay: 'meadhan-oidhche',
-            prefix: 'aon mionaid an dèidh',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(1, 1))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'aon mionaid an dèidh',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(2, 3))).toEqual({
             hourOfDay: 'dhà',
-            prefix: 'trì mionaidean an dèidh',
+            prefix: {
+                minutes: 'trì mionaidean',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(10, 12))).toEqual({
             hourOfDay: 'deich',
-            prefix: 'dà mhionaid dheug an dèidh',
+            prefix: {
+                minutes: 'dà mhionaid dheug',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(11, 29))).toEqual({
             hourOfDay: 'aon deug',
-            prefix: 'fichead mionaid \'s a naoi an dèidh',
+            prefix: {
+                minutes: 'fichead mionaid \'s a naoi',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(12, 1))).toEqual({
             hourOfDay: 'meadhan-là',
-            prefix: 'aon mionaid an dèidh',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(13, 1))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'aon mionaid an dèidh',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'an dèidh'
+            }
         });
     });
     it('should translate half past the hour', () => {
         expect(translateTime(buildTime(0, 30))).toEqual({
             hourOfDay: 'meadhan-oidhche',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(1, 30))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(2, 30))).toEqual({
             hourOfDay: 'dhà',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(10, 30))).toEqual({
             hourOfDay: 'deich',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(11, 30))).toEqual({
             hourOfDay: 'aon deug',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(12, 30))).toEqual({
             hourOfDay: 'meadhan-là',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
         expect(translateTime(buildTime(13, 30))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'leth-uair an dèidh',
+            prefix: {
+                minutes: 'leth-uair',
+                preposition: 'an dèidh'
+            }
         });
     });
     it('should translate quarter til the hour', () => {
         expect(translateTime(buildTime(0, 45))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(1, 45))).toEqual({
             hourOfDay: 'dhà',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(9, 45))).toEqual({
             hourOfDay: 'deich',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(10, 45))).toEqual({
             hourOfDay: 'aon deug',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(11, 45))).toEqual({
             hourOfDay: 'meadhan-là',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(12, 45))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(23, 45))).toEqual({
             hourOfDay: 'meadhan-oidhche',
-            prefix: 'cairteal gu',
+            prefix: {
+                minutes: 'cairteal',
+                preposition: 'gu'
+            }
         });
     });
     it('should translate minutes til the hour', () => {
         expect(translateTime(buildTime(0, 59))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'aon mionaid gu',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(1, 57))).toEqual({
             hourOfDay: 'dhà',
-            prefix: 'trì mionaidean gu',
+            prefix: {
+                minutes: 'trì mionaidean',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(9, 48))).toEqual({
             hourOfDay: 'deich',
-            prefix: 'dà mhionaid dheug gu',
+            prefix: {
+                minutes: 'dà mhionaid dheug',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(10, 31))).toEqual({
             hourOfDay: 'aon deug',
-            prefix: 'fichead mionaid \'s a naoi gu',
+            prefix: {
+                minutes: 'fichead mionaid \'s a naoi',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(11, 59))).toEqual({
             hourOfDay: 'meadhan-là',
-            prefix: 'aon mionaid gu',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(12, 59))).toEqual({
             hourOfDay: 'uair',
-            prefix: 'aon mionaid gu',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'gu'
+            }
         });
         expect(translateTime(buildTime(23, 59))).toEqual({
             hourOfDay: 'meadhan-oidhche',
-            prefix: 'aon mionaid gu',
+            prefix: {
+                minutes: 'aon mionaid',
+                preposition: 'gu'
+            }
         });
     });
 });

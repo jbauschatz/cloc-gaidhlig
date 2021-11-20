@@ -26,8 +26,18 @@ export class App extends React.Component<{}, AppState> {
      */
     render() {
         return <div>
-            <div>{this.state.time.prefix}</div>
-            <div>{this.state.time.hourOfDay}</div>
+            <div className="center gaelic-text">
+                <div className="time-prompt non-number">
+                    Dè an uair a tha e? Tha e
+                </div>
+                <div className="time-prefix">
+                    <span className="number">{this.state.time.prefix?.minutes}&nbsp;</span>
+                    <span className="non-number">{this.state.time.prefix?.preposition}</span>
+                </div>
+                <div className="time-hour number">
+                    {this.state.time.hourOfDay}
+                </div>
+            </div>
         </div>;
     }
 }
