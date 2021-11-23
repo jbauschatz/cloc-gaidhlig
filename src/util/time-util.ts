@@ -23,7 +23,7 @@ export class GaelicTimeIdiom {
 
 /**
  * Prefix component of a Gaelic time idiom.
- * 
+ *
  * This separates the minutes from the preposition so that they can be displayed differently
  * if desired.
  */
