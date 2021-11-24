@@ -1,4 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
+import {ClockFace} from './component/clock-face';
 import {GaelicTimeIdiom, translateTime} from './util/time-util';
 
 /**
@@ -33,12 +34,15 @@ export function App(props: {}) {
             <div className="time-prompt non-number">
                 Dè an uair a tha e? Tha e
             </div>
-            <div className="time-prefix">
+            {timeTranslation.prefix && <div className="time-prefix">
                 <span className="number">{timeTranslation.prefix?.minutes}&nbsp;</span>
                 <span className="non-number">{timeTranslation.prefix?.preposition}</span>
-            </div>
+            </div>}
             <div className="time-hour number">
                 {timeTranslation.hourOfDay}
+            </div>
+            <div id="clock-container">
+                <ClockFace time={time}></ClockFace>
             </div>
         </div>
     </div>;

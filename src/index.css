@@ -34,3 +34,39 @@
     color: lightslategray;
     font-weight: lighter;
 }
+
+#clock-container {
+    width: 200px;
+    height: 200px;
+}
+
+#clock-face {
+	stroke-width: 2px;
+    stroke: lightslategray; 
+    fill: white;
+}
+
+#hour-marker {
+	stroke-width: 2px;
+    stroke: lightslategray; 
+    fill: white;
+}
+
+#hour-hand {
+	stroke-width: 3px;
+    stroke: black;
+}
+#minute-hand {
+	stroke-width: 2px;
+    stroke: black;
+}
+
+#second-hand {
+	stroke-width: 1px;
+    fill: red;
+    stroke: red;
+}
+#clock-center {
+    fill: white;
+    stroke: red;
+}
